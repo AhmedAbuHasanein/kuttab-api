@@ -18,6 +18,7 @@ use App\Http\Controllers\Api\SunnaController;
 use App\Http\Controllers\Api\TeacherController;
 use App\Http\Controllers\Api\TeacherStudentController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\AddMultipleAttendancesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,6 +36,8 @@ Route::get('route/list', function () {
         return $route;
     });
 });
+//Route::post('test/AddMultipleAttendances' , [AddMultipleAttendancesController::class,'store']);
+
 
 Route::group(['prefix' => 'v1'], function () {
 
@@ -71,8 +74,10 @@ Route::group(['prefix' => 'v1'], function () {
         Route::get('teacher/{id}/students',[TeacherController::class,'getStudents']);
         Route::get('available/teachers',[TeacherController::class,'getAvailable']);
 
+
         //Assistant Routes
         Route::get('available/assistants',[AssistantController::class,'getAvailable']);
+
 
         //Api Resources Routes
         Route::apiResource('school',SchoolController::class)->except('store');
@@ -90,6 +95,9 @@ Route::group(['prefix' => 'v1'], function () {
             'classCategory' => ClassCategoryController::class,
             'teacherStudent' => TeacherStudentController::class,
             'attendanceReasons' => AttendanceReasonsController::class,
+            'AddMultipleAttendances' => AddMultipleAttendancesController::class,
+
+
         ]);
 
     });
